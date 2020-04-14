@@ -11,7 +11,7 @@ Grap nfiftest.hpp and include it.
 
 ### Example
 
-Just skim sample would be enough for most of C++ programmers (Especially if you already know Catch2).
+Just skim sample would be enough for most C++ programmers (Especially if you already know Catch2).
 
 [sample_main.cpp](./sample_main.cpp)
 
