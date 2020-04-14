@@ -208,8 +208,9 @@ void RunTests(std::vector<TestPair>& testCases)
             }catch(assert_fail_error &e) {
                 std::stringstream ss;
 
-                ss << "TEST FAIL: " << e._current->_name << std::endl;
-                ss << e._file << ":" << e._line << " ASSERT FAIL  " << e.what() << std::endl;
+                ss << "TEST FAIL: " << root._name << std::endl;
+                ss << "   SECTION: " << e._current->_name << std::endl;
+                ss << e._file << ":" << e._line << " REQUIRE FAIL  " << e.what() << std::endl;
                 errors.push_back(ss.str());
                 e._current->_state = SectionState::FAIL;
                 g_context.addFail();
