@@ -2,8 +2,8 @@
 
 nfiftest (Not Fancy Intellisence Friendly test) is header-only, less macro using, somewhat verbose test library based on C++11.
 
-Concept and API is similar to [Catch2](https://github.com/catchorg/Catch2), but this is more primitive and you nedd to write more ugly code.
-The reward is less macro. It's much more intellisence friendly (That's all I need!).
+Concept and API is similar to [Catch2](https://github.com/catchorg/Catch2), but nfiftest is more primitive and you nedd to write more ugly code.
+The reward is less macro. It's much more intellisence friendly (That's all I need!) and easier to step-execute.
 
 ### Instlation
 
