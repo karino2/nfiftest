@@ -9,16 +9,16 @@ The reward is less macro. It's much more intellisence friendly (That's all I nee
 
 Grap nfiftest.hpp and include it.
 
-### example
+### Example
 
-I think just skim sample is enough for most of C++ programmer (Especially if you know Catch2).
+Just skim sample would be enough for most of C++ programmers (Especially if you already know Catch2).
 
 [sample_main.cpp](./sample_main.cpp)
 
 
 ## Basic Concept
 
-- test case
+- Test case
 - SECION
 - REQUIRE
 
@@ -38,6 +38,8 @@ std::vector<nfiftest::TestPair> test_cases = {
 };
 ```
 
+No macro here.
+
 Then run test like this.
 
 ```
@@ -51,11 +53,14 @@ You can add section like following.
 ```
     if(SECTION("Some section name")) { SG g;
       ...
-   }
+    }
 ```
 
 There is naked `if` and you need to place SG (SectionGuard) object by hand.
 No macro here.
+
+`if` itself is semantically meaningless.
+Please regard this whole line just as SECTION beginning.
 
 ### REQUIRE
 
