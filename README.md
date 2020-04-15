@@ -77,3 +77,52 @@ This use macro. This is the only place where macro is used.
 - No multiple file test (At least not yet)
 - No command line handling
 - No fancy output
+
+# Tips
+
+When I used this library to real project, I found some tips.
+
+### Redefine REQUIRE inside .cpp
+
+Using REQUIRE outside of .cpp sometime makes code analysis slower.
+At that time, just re-define REQUIRE.
+
+```
+#include "nfiftest.hpp"
+
+#undef REQUIRE
+#define REQUIRE(expr) if(!(expr)) throw nfiftest::assert_fail_error(__FILE__, __LINE__, #expr)
+```
+
+This is ridiculously effective.
+
+### Split test cases
+
+Sometime, long initializer list of test case makes code analyss slower.
+At that time, split test case vector and merge it before RunTest.
+
+```
+std::vector<TestPair> test_cases1 = {
+    {"test1", []{...}},
+    {"test2", []{...}},
+    ...
+};
+
+std::vector<TestPair> test_cases2 = {
+    {"test2_1", []{...}},
+    {"test2_2", []{...}},
+    ...
+};
+
+int main()
+{
+    std::vector<TestPair> test_cases;
+    test_cases.insert(test_cases.end(), test_cases1.begin(), test_cases1.end());
+    test_cases.insert(test_cases.end(), test_cases2.begin(), test_cases2.end());
+
+    RunTests(test_cases);
+    return 0;
+}
+```
+
+After splitting test cases, re-open file mitigate slow intellisence update.
