@@ -72,9 +72,49 @@ REQUIRE is just put expression which should be true.
 
 This use macro. This is the only place where macro is used.
 
+### Multiple test file
+
+There is `_NFIFTEST_SUBTEST_` macro.
+There must be only one include without this define, all other must be include with this symbol.
+For example:
+
+```
+// file test2.cpp
+#define _NFIFTEST_SUBTEST_
+#include "nfiftest.hpp"
+
+using namespace nfiftest;
+static std::vector<TestPair> test_cases1 = {
+...
+};
+
+void RegisterTest2(std::vector<TestPair>& testCases) {
+    testCases.insert(testCases.end(), test_cases1.begin(), test_cases1.end());    
+}
+
+
+
+// file test1.cpp
+#include "nfiftest.hpp"
+
+using namespace nfiftest;
+static std::vector<TestPair> test_cases1 = {
+...
+};
+
+extern void RegisterTest2(std::vector<TestPair>& testCases);
+int main() {
+    std::vector<TestPair> test_cases;
+    test_cases.insert(test_cases.end(), test_cases1.begin(), test_cases1.end());
+    RegisterAllocatorTest( test_cases );
+
+    RunTests(test_cases);
+    return 0;
+}
+```
+
 ### Not supported
 
-- No multiple file test (At least not yet)
 - No command line handling
 - No fancy output
 
@@ -98,7 +138,7 @@ This is ridiculously effective.
 
 ### Split test cases
 
-Sometime, long initializer list of test case makes code analyss slower.
+Sometime, long initializer list of test case makes code analysis slower.
 At that time, split test case vector and merge it before RunTest.
 
 ```

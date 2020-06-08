@@ -91,8 +91,11 @@ struct Context {
 };
 
 
-static Context g_context;
-
+#ifdef _NFIFTEST_SUBTEST_
+extern Context g_context;
+#else
+Context g_context;
+#endif
 
 struct assert_fail_error : std::runtime_error {
     std::string _file;
@@ -116,7 +119,7 @@ struct SG {
 
 
 
-bool SECTION(const char* secName) {
+inline bool SECTION(const char* secName) {
     auto ent = g_context.findEntry(secName);
     if(ent == g_context.endEntry())
     {// not found, first call.
@@ -171,7 +174,7 @@ bool SECTION(const char* secName) {
     }
 }
 
-void RunTests(std::vector<TestPair>& testCases)
+inline void RunTests(std::vector<TestPair>& testCases)
 {
     std::vector<std::string> errors;
     g_context._successCount = 0;
