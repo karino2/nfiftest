@@ -106,7 +106,7 @@ extern void RegisterTest2(std::vector<TestPair>& testCases);
 int main() {
     std::vector<TestPair> test_cases;
     test_cases.insert(test_cases.end(), test_cases1.begin(), test_cases1.end());
-    RegisterAllocatorTest( test_cases );
+    RegisterTest2( test_cases );
 
     RunTests(test_cases);
     return 0;
