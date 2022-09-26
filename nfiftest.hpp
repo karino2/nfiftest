@@ -1,6 +1,9 @@
 #ifndef _NOT_FANCY_INTELLISENSE_FRIENDLY_TEST_H_
 #define _NOT_FANCY_INTELLISENSE_FRIENDLY_TEST_H_
 
+#include <algorithm>
+#include <cassert>
+#include <cstring>
 #include <functional>
 #include <iostream>
 #include <vector>
