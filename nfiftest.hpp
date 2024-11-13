@@ -221,6 +221,14 @@ inline void RunTests(std::vector<TestPair>& testCases)
                 e._current->_state = SectionState::FAIL;
                 g_context.addFail();
                 continue;
+            }catch(std::runtime_error& r) {
+                std::stringstream ss;
+
+                ss << "TEST FAIL: " << root._name << std::endl;
+                ss << "   with unknown error: " << r.what() << std::endl;
+                errors.push_back(ss.str());
+                g_context.addFail();
+                continue;
             }
         }
     }
